@@ -1,6 +1,10 @@
 DELETE FROM user_account_roles;
 DELETE FROM role;
 DELETE FROM user_account;
+DELETE FROM speciality;
 INSERT INTO role ("id", "name") VALUES ( 1, 'ROLE_USER' );
 INSERT INTO role ("id", "name") VALUES ( 2, 'ROLE_ADMIN' );
 INSERT INTO role ("id", "name") VALUES ( 3, 'ROLE_MANAGER' );
+INSERT INTO speciality (id, description, name) VALUES (1, 'dev in nc', 'dev');
+INSERT INTO speciality (id, description, name) VALUES (2, 'qa in nc', 'qa');
+INSERT INTO speciality (id, description, name) VALUES (3, 'ba in nc', 'ba');
