@@ -35,7 +35,7 @@ public class UserController {
             return "registration";
         userService.save(userRegistrationDto);
         securityService.autoLogin(userRegistrationDto.getEmail(),userRegistrationDto.getPassword());
-        return "redirect:/login?success";
+        return "redirect:/home";
     }
 
     @GetMapping("/login")
