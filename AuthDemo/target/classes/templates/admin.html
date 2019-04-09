@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <title>User profile</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="col-md-6">
+        <h1>Admin</h1>
+        <div th:each="enrollment : ${enrollments}" class="col-md-6">
+            <p th:text="${{enrollment.speciality}}">text</p>
+            <p th:text="${{enrollment.appStart}}">text</p>
+            <p th:text="${{enrollment.appEnd}}">text</p>
+            <p th:text="${{enrollment.testStart}}">text</p>
+            <p th:text="${{enrollment.testEnd}}">text</p>
+        </div>
+        <p><a th:href="@{/enrollment/add}">Add enrollment</a></p>
+    </div>
+</div>
+
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

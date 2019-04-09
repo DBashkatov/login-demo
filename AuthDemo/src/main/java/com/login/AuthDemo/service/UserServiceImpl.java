@@ -32,6 +32,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveAdmin() {
+        User user = new User();
+        user.setEmail("admin");
+        user.setPassword(bCryptPasswordEncoder.encode("admin"));
+        user.setRoles(new HashSet(Arrays.asList(roleRepository.findByName("ROLE_ADMIN"))));
+        userRepository.save(user);
+    }
+
+    @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

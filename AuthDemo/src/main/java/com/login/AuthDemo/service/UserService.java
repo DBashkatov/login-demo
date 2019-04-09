@@ -5,5 +5,6 @@ import com.login.AuthDemo.web.dto.UserRegistrationDto;
 
 public interface UserService {
     void save(UserRegistrationDto userRegistrationDto);
+    void saveAdmin();
     User findByEmail(String username);
 }

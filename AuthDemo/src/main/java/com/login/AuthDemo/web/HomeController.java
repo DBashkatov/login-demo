@@ -1,6 +1,8 @@
 package com.login.AuthDemo.web;
 
 import com.login.AuthDemo.repository.SpecialityRepository;
+import com.login.AuthDemo.repository.UserRepository;
+import com.login.AuthDemo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,19 @@ public class HomeController {
 
     @Autowired
     SpecialityRepository specialityRepository;
+    @Autowired
+    UserServiceImpl userService;
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
 
     @GetMapping("/home")
     public String home(Model model) {
+        if (userService.findByEmail("admin") == null)
+            userService.saveAdmin();
+
         model.addAttribute("specialities", specialityRepository.findAll());
         return "home";
     }

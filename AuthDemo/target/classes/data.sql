@@ -7,6 +7,8 @@ FROM user_info;
 DELETE
 FROM user_account;
 DELETE
+FROM enrollment;
+DELETE
 FROM speciality;
 DELETE
 FROM source;
@@ -19,7 +21,6 @@ INSERT INTO role ("id", "name")
 VALUES (2, 'ROLE_ADMIN');
 INSERT INTO role ("id", "name")
 VALUES (3, 'ROLE_MANAGER');
-
 
 INSERT INTO speciality (id, description, name)
 VALUES (1, 'description1', 'speciality1');

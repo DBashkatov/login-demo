@@ -24,11 +24,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     UserRepository userRepository;
 
     @Override
-    public void save(UserInfoDto userInfoDto) {
+    public String getPrincipalName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+        return currentPrincipalName;
+    }
 
+    @Override
+    public void save(UserInfoDto userInfoDto) {
+        String name = getPrincipalName();
         UserInfo userInfo = new UserInfo();
+
         userInfo.setFirstName(userInfoDto.getFirstName());
         userInfo.setLastName(userInfoDto.getLastName());
         userInfo.setCity(cityRepository.findByName(userInfoDto.getCity()));
@@ -38,7 +44,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setDepartment(userInfoDto.getDepartment());
         userInfo.setSpeciality(userInfoDto.getSpeciality());
         userInfo.setSource(sourceRepository.findByName(userInfoDto.getSource()));
-        userInfo.setUser(userRepository.findByEmail(currentPrincipalName));
+        userInfo.setUser(userRepository.findByEmail(name));
+
         userInfoRepository.save(userInfo);
     }
 }

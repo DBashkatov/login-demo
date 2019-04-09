@@ -15,8 +15,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">Log in</a>
+            </div>
             <div sec:authorize="hasRole('ROLE_USER')">
                 <p><a href="/" th:href="@{/profile}">Profile</a></p>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <p><a href="/" th:href="@{/admin}">Admin board</a></p>
             </div>
         </div>
     </div>

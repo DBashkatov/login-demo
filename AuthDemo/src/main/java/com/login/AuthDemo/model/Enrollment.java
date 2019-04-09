@@ -3,6 +3,7 @@ package com.login.AuthDemo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,13 +18,13 @@ public class Enrollment {
     @ManyToOne
     private Speciality speciality;
 
-    private Date appStart;
+    private LocalDate appStart;
 
-    private Date appEnd;
+    private LocalDate appEnd;
 
-    private Date testStart;
+    private LocalDate testStart;
 
-    private Date testEnd;
+    private LocalDate testEnd;
 
     private LocalDateTime createdAt;
 
