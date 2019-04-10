@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <title>User profile</title>
+</head>
+<body>
+<div class="container">
+    <h1>Edit profile</h1>
+    <form action="#" th:action="@{/profile}" th:object="${userInfo}" method="post">
+        <label>First Name <input type="text" th:field="*{firstName}"/></label>
+        <label>Last Name <input type="text" th:field="*{lastName}"/></label>
+        <label>University <input type="text" th:field="*{university}"/></label>
+        <label>Department <input type="text" th:field="*{department}"/></label>
+        <select th:field="*{grade}">
+            <option th:each="i : ${#numbers.sequence(3, 6)}" th:value="${i}" th:text="${i}">
+            </option>
+        </select>
+        <ul>
+            <li th:each="city : ${cities}">
+                <input type="radio" th:field="*{city}" th:value="${city.name}"/>
+                <label th:text="${city.name}">City name</label>
+            </li>
+        </ul>
+        <label>Phone <input type="text" th:field="*{phone}"/></label>
+
+        <label>Speciality <input type="text" th:field="*{speciality}"/></label>
+        <ul>
+            <li th:each="source : ${sources}">
+                <input type="radio" th:field="*{source}" th:value="${source.name}"/>
+                <label th:text="${source.name}">Source name</label>
+            </li>
+        </ul>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+
+
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
