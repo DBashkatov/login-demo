@@ -3,6 +3,7 @@ package com.login.AuthDemo.web;
 import com.login.AuthDemo.repository.EnrollmentRepository;
 import com.login.AuthDemo.repository.SpecialityRepository;
 import com.login.AuthDemo.service.EnrollmentServiceImpl;
+import com.login.AuthDemo.service.SpecialityServiceImpl;
 import com.login.AuthDemo.web.dto.EnrollmentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,22 +16,20 @@ import javax.validation.Valid;
 public class AdminController {
 
     @Autowired
-    EnrollmentRepository enrollmentRepository;
-    @Autowired
-    SpecialityRepository specialityRepository;
+    SpecialityServiceImpl specialityService;
     @Autowired
     EnrollmentServiceImpl enrollmentService;
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("enrollments", enrollmentRepository.findAll());
+        model.addAttribute("enrollments", enrollmentService.findAll());
         return "admin";
     }
 
     @GetMapping("enrollment/add")
     public String putEnrollment(Model model){
         model.addAttribute("enrollment", new EnrollmentDto());
-        model.addAttribute("specialities", specialityRepository.findAll());
+        model.addAttribute("specialities", specialityService.findAll());
         return "enrollment";
     }
 
@@ -42,7 +41,7 @@ public class AdminController {
 
     @DeleteMapping("enrollment/{id}/delete")
     public String deleteEnrollment(@PathVariable("id") Long id){
-        enrollmentRepository.deleteById(id);
-        return "admin";
+        enrollmentService.deleteById(id);
+        return "redirect:/admin";
     }
 }

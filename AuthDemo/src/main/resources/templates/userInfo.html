@@ -24,6 +24,9 @@
         <p th:text="${userInfo.speciality}">text</p>
         <p th:text="${userInfo.source}">text</p>
     </ul>
+    <form th:action="@{/logout}" method="POST">
+        <input type="submit" value="Logout"/>
+    </form>
 </div>
 
 

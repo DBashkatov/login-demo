@@ -2,6 +2,7 @@ package com.login.AuthDemo.web;
 
 import com.login.AuthDemo.repository.SpecialityRepository;
 import com.login.AuthDemo.repository.UserRepository;
+import com.login.AuthDemo.service.SpecialityServiceImpl;
 import com.login.AuthDemo.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     @Autowired
-    SpecialityRepository specialityRepository;
+    SpecialityServiceImpl specialityService;
     @Autowired
     UserServiceImpl userService;
 
@@ -27,13 +28,13 @@ public class HomeController {
         if (userService.findByEmail("admin") == null)
             userService.saveAdmin();
 
-        model.addAttribute("specialities", specialityRepository.findAll());
+        model.addAttribute("specialities", specialityService.findAll());
         return "home";
     }
 
     @GetMapping("/speciality")
     public String speciality(@RequestParam Long id, Model model) {
-        model.addAttribute("speciality", specialityRepository.findById(id).get());
+        model.addAttribute("speciality", specialityService.findById(id));
         return "speciality";
     }
 

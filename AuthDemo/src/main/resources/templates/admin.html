@@ -21,6 +21,10 @@
             <p th:text="${{enrollment.appEnd}}">text</p>
             <p th:text="${{enrollment.testStart}}">text</p>
             <p th:text="${{enrollment.testEnd}}">text</p>
+            <form action="#" th:action="@{'/enrollment/{id}/delete'(id=${enrollment.id})}" th:method="delete" >
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit" id="submitButton"> Delete </button>
+            </form>
         </div>
         <p><a th:href="@{/enrollment/add}">Add enrollment</a></p>
     </div>

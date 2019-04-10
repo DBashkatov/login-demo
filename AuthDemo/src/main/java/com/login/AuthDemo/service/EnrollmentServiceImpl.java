@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 @Service
@@ -20,6 +21,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     EnrollmentRepository enrollmentRepository;
     @Autowired
     SpecialityRepository specialityRepository;
+
+    @Override
+    public List<Enrollment> findAll() {
+        return enrollmentRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        enrollmentRepository.deleteById(id);
+    }
 
     @Override
     public void save(EnrollmentDto enrollmentDto) {
