@@ -1,6 +1,6 @@
 package com.login.AuthDemo.service;
 
-import com.login.AuthDemo.model.Source;
+import com.login.AuthDemo.entities.Source;
 
 import java.util.List;
 

@@ -9,11 +9,18 @@ FROM user_account;
 DELETE
 FROM enrollment;
 DELETE
+FROM question_type;
+DELETE
+FROM question;
+DELETE
 FROM speciality;
 DELETE
 FROM source;
 DELETE
 FROM city;
+
+INSERT INTO enrollment
+VALUES (1,  current_timestamp, current_timestamp, current_timestamp, current_timestamp, current_timestamp);
 
 INSERT INTO role ("id", "name")
 VALUES (1, 'ROLE_USER');
@@ -45,3 +52,10 @@ INSERT INTO city (id, name)
 VALUES (1, 'city1');
 INSERT INTO city (id, name)
 VALUES (2, 'city2');
+
+INSERT INTO question_type(id, name)
+VALUES (1, 'text');
+INSERT INTO question_type(id, name)
+VALUES (2, 'radio');
+INSERT INTO question_type(id, name)
+VALUES (3, 'checkbox');

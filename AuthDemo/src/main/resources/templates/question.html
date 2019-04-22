@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <title>User profile</title>
+</head>
+<body>
+<div class="container">
+    <h1>Enrollment</h1>
+    <form action="#" th:action="@{/question/add}" th:object="${question}" method="post">
+        <ul>
+            <li th:each="speciality : ${specialities}">
+                <input type="radio" th:field="*{speciality}" th:value="${speciality.name}"/>
+                <label th:text="${speciality.name}">Spec name</label>
+            </li>
+        </ul>
+        <ul>
+            <li th:each="questionType : ${questionTypes}">
+                <input type="radio" th:field="*{questionType}" th:value="${questionType.name}"/>
+                <label th:text="${questionType.name}">Spec name</label>
+            </li>
+        </ul>
+        <label>Text <input type="text" th:field="*{text}"/></label>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form></div>
+
+
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

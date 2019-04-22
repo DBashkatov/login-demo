@@ -14,10 +14,10 @@
 <div class="container">
     <h1>Edit profile</h1>
     <form action="#" th:action="@{/profile}" th:object="${userInfo}" method="post">
-        <label>First Name <input type="text" th:field="*{firstName}"/></label>
-        <label>Last Name <input type="text" th:field="*{lastName}"/></label>
-        <label>University <input type="text" th:field="*{university}"/></label>
-        <label>Department <input type="text" th:field="*{department}"/></label>
+        <label>First Name <input type="text" th:field="*{firstName}" th:value="${currentUserInfo?.firstName}"/></label>
+        <label>Last Name <input type="text" th:field="*{lastName}" th:value="${currentUserInfo?.lastName}"/></label>
+        <label>University <input type="text" th:field="*{university}" th:value="${currentUserInfo?.university}"/></label>
+        <label>Department <input type="text" th:field="*{department}" th:value="${currentUserInfo?.department}"/></label>
         <select th:field="*{grade}">
             <option th:each="i : ${#numbers.sequence(3, 6)}" th:value="${i}" th:text="${i}">
             </option>
@@ -28,7 +28,7 @@
                 <label th:text="${city.name}">City name</label>
             </li>
         </ul>
-        <label>Phone <input type="text" th:field="*{phone}"/></label>
+        <label>Phone <input type="text" th:field="*{phone}" th:value="${currentUserInfo?.phone}"/></label>
 
         <label>Speciality <input type="text" th:field="*{speciality}"/></label>
         <ul>

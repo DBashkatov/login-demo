@@ -1,7 +1,7 @@
 package com.login.AuthDemo.repository;
 
-import com.login.AuthDemo.model.Enrollment;
-import com.login.AuthDemo.model.Speciality;
+import com.login.AuthDemo.entities.Enrollment;
+import com.login.AuthDemo.entities.Speciality;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Set;

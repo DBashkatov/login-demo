@@ -16,17 +16,20 @@
     <ul>
         <p th:text="${userInfo.firstName}">text</p>
         <p th:text="${userInfo.lastName}">text</p>
-        <p th:text="${userInfo.city}">text</p>
+        <p th:text="${userInfo.city.name}">text</p>
         <p th:text="${userInfo.phone}">text</p>
         <p th:text="${userInfo.grade}">text</p>
         <p th:text="${userInfo.university}">text</p>
         <p th:text="${userInfo.department}">text</p>
         <p th:text="${userInfo.speciality}">text</p>
-        <p th:text="${userInfo.source}">text</p>
+        <p th:text="${userInfo.source.name}">text</p>
+        <form th:action="@{/profile/edit}" method="GET">
+            <input type="submit" value="Edit"/>
+        </form>
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout"/>
+        </form>
     </ul>
-    <form th:action="@{/logout}" method="POST">
-        <input type="submit" value="Logout"/>
-    </form>
 </div>
 
 
