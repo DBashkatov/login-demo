@@ -24,9 +24,6 @@ public class HomeController {
 
     @GetMapping("/api/specialities/all")
     public List<Speciality> home() {
-        if (userService.findByEmail("admin") == null)
-            userService.saveAdmin();
-
         return specialityService.findAll();
     }
 

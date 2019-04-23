@@ -15,7 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -32,7 +35,7 @@ public class UserController {
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @PostMapping("/api/login")
+    @PostMapping("/api/auth/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -41,8 +44,8 @@ public class UserController {
         return ResponseEntity.ok(new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
     }
 
-    @PostMapping("/api/registration")
-    public ResponseEntity<?> registration(@ModelAttribute("user") @Valid UserRegistrationDto userRegistrationDto, BindingResult bindingResult) {
+    @PostMapping("/api/auth/registration")
+    public ResponseEntity<?> registration(@Valid @RequestBody UserRegistrationDto userRegistrationDto) {
         if (userService.findByEmail(userRegistrationDto.getEmail()) != null)
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
         userService.save(userRegistrationDto);

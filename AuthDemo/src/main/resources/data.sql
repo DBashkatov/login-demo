@@ -29,6 +29,13 @@ VALUES (2, 'ROLE_ADMIN');
 INSERT INTO role ("id", "name")
 VALUES (3, 'ROLE_MANAGER');
 
+
+INSERT INTO user_account (id, password, email)
+VALUES (1,  'password', 'user@user');
+
+INSERT INTO user_account_roles (user_id, roles_id)
+VALUES (1, 1);
+
 INSERT INTO speciality (id, description, name)
 VALUES (1, 'description1', 'speciality1');
 INSERT INTO speciality (id, description, name)
