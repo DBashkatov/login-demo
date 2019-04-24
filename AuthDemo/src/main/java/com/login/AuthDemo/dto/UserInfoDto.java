@@ -3,13 +3,13 @@ package com.login.AuthDemo.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 public class UserInfoDto {
 
-    @NotNull
-    private Long id;
+    @NotEmpty
+    private String studentStatus;
 
     @NotEmpty
     private String firstName;
@@ -25,15 +25,15 @@ public class UserInfoDto {
 
     private Integer grade;
 
-    @NotEmpty
     private String university;
 
-    @NotEmpty
     private String department;
 
-    @NotEmpty
     private String speciality;
 
-    @NotEmpty
-    private String source;
+    private String testStart;
+
+    private String testEnd;
+
+    private Long enrollmentId;
 }

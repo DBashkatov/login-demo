@@ -7,5 +7,4 @@ import com.login.AuthDemo.dto.UserInfoDto;
 public interface UserInfoService {
     void save(UserInfoDto userInfoDto);
     UserInfo getCurrentPrincipalUserInfo();
-    CitiesSpecialitiesDto createCitiesSpecialitiesDto();
 }

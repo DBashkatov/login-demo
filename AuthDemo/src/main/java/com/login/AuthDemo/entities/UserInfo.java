@@ -12,12 +12,13 @@ public class UserInfo {
     @GeneratedValue
     private Long id;
 
+    private String studentStatus;
+
     private String firstName;
 
     private String lastName;
 
-    @ManyToOne
-    private City city;
+    private String city;
 
     private String phone;
 
@@ -29,9 +30,9 @@ public class UserInfo {
 
     private String speciality;
 
-    @ManyToOne
-    private Source source;
-
     @OneToOne
     private User user;
+
+    @ManyToOne
+    private Enrollment enrollment;
 }

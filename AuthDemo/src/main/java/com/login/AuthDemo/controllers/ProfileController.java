@@ -1,23 +1,20 @@
 package com.login.AuthDemo.controllers;
 
-import com.login.AuthDemo.dto.CitiesSpecialitiesDto;
-import com.login.AuthDemo.entities.City;
-import com.login.AuthDemo.entities.Source;
-import com.login.AuthDemo.entities.UserInfo;
-import com.login.AuthDemo.service.Impl.CityServiceImpl;
-import com.login.AuthDemo.service.Impl.SourceServiceImpl;
-import com.login.AuthDemo.service.Impl.UserInfoServiceImpl;
-import com.login.AuthDemo.service.Impl.UserServiceImpl;
+import com.login.AuthDemo.AuthDemoApplication;
+import com.login.AuthDemo.converters.UserInfoConv;
 import com.login.AuthDemo.dto.UserInfoDto;
+import com.login.AuthDemo.entities.UserInfo;
+import com.login.AuthDemo.service.Impl.UserInfoServiceImpl;
+import org.jboss.logging.LoggingClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -25,20 +22,20 @@ public class ProfileController {
 
     @Autowired
     UserInfoServiceImpl userInfoService;
+    @Autowired
+    UserInfoConv userInfoConv;
 
     @GetMapping("/api/profile")
-    public UserInfo profile() {
-        return userInfoService.getCurrentPrincipalUserInfo();
+    public ResponseEntity<?> getProfile() {
+        UserInfo userInfo = userInfoService.getCurrentPrincipalUserInfo();
+        if (userInfo != null)
+            return new ResponseEntity(userInfoConv.userInfoToDto(userInfo), HttpStatus.OK);
+        return new ResponseEntity(new UserInfoDto(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/profile/edit")
-    public CitiesSpecialitiesDto editProfile() {
-        CitiesSpecialitiesDto citiesSpecialitiesDto = userInfoService.createCitiesSpecialitiesDto();
-        return citiesSpecialitiesDto;
-    }
-
-    @PostMapping("/api//profile/edit")
-    public void editProfile(@RequestBody UserInfoDto userInfoDto) {
+    @PostMapping("/api/profile")
+    public ResponseEntity<?> updateProfile(@Valid @RequestBody UserInfoDto userInfoDto) {
         userInfoService.save(userInfoDto);
+        return new ResponseEntity<>("User info updated successfully!", HttpStatus.OK);
     }
 }
